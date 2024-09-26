@@ -14,7 +14,7 @@ function Contact(props) {
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, []);
+    }, [contact.id]);
 
     const expandStyle = {
         display: expanded ? 'block' : 'none'
@@ -42,7 +42,10 @@ function Contact(props) {
             </div>
 
             <div style={expandStyle}>
-                <hr />
+                <hr />   
+                <p>ID: {contact.id} </p>
+                <p>Name: {contact.name}</p>
+                <p>Address: {contact.address}</p>       
                 <PhoneList phones={phones} setPhones={setPhones} contact={contact} />
             </div>
         </div>
