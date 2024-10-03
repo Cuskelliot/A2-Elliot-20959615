@@ -2,7 +2,7 @@ function Company(props) {
     const {contact, company, companies, setCompany} = props;
 
     async function deleteCompany() {
-        const response = await fetch('http://localhost/api/contacts/' + contact.id + '/companies/' + company.id, {
+        const response = await fetch(`http://localhost/api/contacts/${contact.id}/companies/${company.id}`, {
             method: 'DELETE',
         });
 
