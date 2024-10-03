@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';  // import useEffect
-import ContactList from './components/ContactList';
+import ContactList from './components/Contacts/ContactList';
 import Stats from './components/Stats';
 import './App.css';
 

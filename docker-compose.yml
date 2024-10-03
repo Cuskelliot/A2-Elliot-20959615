@@ -7,6 +7,8 @@ services:
       - 80:80
     links:
       - frontend
+    depends_on:
+      - frontend
 
   frontend:
     build:
@@ -15,6 +17,8 @@ services:
     volumes:
       - ./frontend:/app
     links:
+      - api
+    depends_on:
       - api
 
   api:
@@ -25,6 +29,16 @@ services:
       - ./api:/app
     links:
       - db
+    depends_on:
+      - db
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 0
+        window: 120s
+
 
   db:
     image: postgres:15.3-alpine3.18

@@ -1,7 +1,6 @@
 const db = require("../models");
 const Contacts = db.contacts;
 const Phones = db.phones;
-const Op = db.Sequelize.Op;
 
 // Create contact
 exports.create = (req, res) => {
@@ -74,6 +73,8 @@ exports.update = (req, res) => {
         });
     });
 };
+
+// TODO modify for company?
 
 // Delete one contact by id
 exports.delete = (req, res) => {
