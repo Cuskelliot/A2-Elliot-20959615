@@ -2,15 +2,23 @@ function Phone(props) {
     const {contact, phone, phones, setPhones} = props;
 
     async function deletePhone() {
-        const response = await fetch('http://localhost/api/contacts/' + contact.id + '/phones/' + phone.id, {
-            method: 'DELETE',
-        });
-
-        let newPhones = phones.filter((p) => {
-            return p.id !== phone.id;
-        });
-
-        setPhones(newPhones);
+        try {
+            const response = await fetch(`http://localhost/api/contacts/${contact.id}/phones/${phone.id}`, {
+                method: 'DELETE',
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+    
+            let newPhones = phones.filter((p) => {
+                return p.id !== phone.id;
+            });
+    
+            setPhones(newPhones);
+        } catch (error) {
+            console.error('Failed to delete phone:', error);
+        }
     }
 
 	return (
