@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';  // import useEffect
-import PhoneList from '../Phones/PhoneList.js';
+import PhoneList from '../phones/PhoneList.js';
 
 function Contact(props) {
     const {contact, contacts, setContacts} = props;
@@ -7,7 +7,7 @@ function Contact(props) {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost/api/contacts/' + contact.id + '/phones')
+        fetch(`http://localhost/api/contacts/${contact.id}/phones`)
             .then(response => response.json())
             .then(data => setPhones(data))
             .catch((error) => {
@@ -22,7 +22,7 @@ function Contact(props) {
     async function doDelete(e) {
         e.stopPropagation();
         
-        const response = await fetch('http://localhost/api/contacts/' + contact.id, {
+        const response = await fetch(`http://localhost/api/contacts/${contact.id}`, {
             method: 'DELETE',
         });
 

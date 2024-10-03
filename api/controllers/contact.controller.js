@@ -1,6 +1,7 @@
 const db = require("../models");
 const Contacts = db.contacts;
 const Phones = db.phones;
+// const Company = db.company;
 
 // Create contact
 exports.create = (req, res) => {
