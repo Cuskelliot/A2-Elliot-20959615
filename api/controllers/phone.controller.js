@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     Phones.create(phone)
         .then(data => {
-            res.send(data);
+            res.statu(200).send(data);
         })
         .catch(err => {
             res.status(500).send({
