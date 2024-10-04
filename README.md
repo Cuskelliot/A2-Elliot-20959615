@@ -2,11 +2,7 @@
 
 IMPORTANT: Once you've cloned this to your forked repository, ensure that you continuously update this document as you complete each task to demonstrate your ongoing progress.
 
-Please include your shared repository link here:
-
-Example:
-Choiru's shared repository: https://github.com/choiruzain-latrobe/Assignment2.git
-
+Please include your shared repository link here: https://github.com/Cuskelliot/A2-Elliot-20959615
 
 Make sure for **your case it is in Private**
 ## Access Database
@@ -68,7 +64,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 1. Add contacts API  (POST)
 ```bash
-http post http://localhost/api/contacts
+http post http://localhost/contacts
         
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -91,7 +87,7 @@ X-Powered-By: Express
 2 Get contacts API  (GET)
 
 ```bash
-http get http://localhost/api/contacts
+http get http://localhost/contacts
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -124,7 +120,7 @@ X-Powered-By: Express
 
 ```bash
 
-http delete http://localhost/api/contacts/
+http delete http://localhost/contacts/
         
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -147,7 +143,7 @@ X-Powered-By: Express
 
 ```bash 
 
-http put http://localhost/api/contacts/
+http put http://localhost/contacts/
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -171,7 +167,7 @@ X-Powered-By: Express
 1. Add phone API  (POST)
 
 ```bash
-http post http://localhost/api/contacts/1/phones
+http post http://localhost/contacts/1/phones
         
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -197,7 +193,7 @@ X-Powered-By: Express
 2 Get phones API  (GET)
 
 ```bash
-http get http://localhost/api/contacts/1/phones
+http get http://localhost/contacts/1/phones
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -224,7 +220,7 @@ X-Powered-By: Express
 
 ```bash
 
-http delete http://localhost/api/contacts/2/phones/5/
+http delete http://localhost/contacts/2/phones/5/
         
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -247,7 +243,7 @@ X-Powered-By: Express
 
 ```bash 
 
-http put http://localhost/api/contacts/1/phones/4/
+http put http://localhost/contacts/1/phones/4/
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
