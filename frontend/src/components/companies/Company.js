@@ -2,15 +2,23 @@ function Company(props) {
     const {contact, company, companies, setCompany} = props;
 
     async function deleteCompany() {
-        const response = await fetch(`http://localhost/api/contacts/${contact.id}/companies/${company.id}`, {
-            method: 'DELETE',
-        });
-
-        let newCompany = companies.filter((p) => {
-            return p.id !== company.id;
-        });
-
-        setCompany(newCompany);
+        try {
+            const response = await fetch(`http://localhost/api/contacts/${contact.id}/company/${company.id}`, {
+                method: 'DELETE',
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+    
+            let newCompany = companies.filter((c) => {
+                return c.id !== company.id;
+            });
+    
+            setCompany(newCompany);
+        } catch (error) {
+            console.error('Failed to delete company:', error);
+        }
     }
 
 	return (
