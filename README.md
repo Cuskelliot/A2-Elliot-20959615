@@ -2,11 +2,7 @@
 
 IMPORTANT: Once you've cloned this to your forked repository, ensure that you continuously update this document as you complete each task to demonstrate your ongoing progress.
 
-Please include your shared repository link here:
-
-Example:
-Choiru's shared repository: https://github.com/choiruzain-latrobe/Assignment2.git
-
+Please include your shared repository link here: https://github.com/Cuskelliot/A2-Elliot-20959615
 
 Make sure for **your case it is in Private**
 ## Access Database
@@ -68,25 +64,23 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 1. Add contacts API  (POST)
 ```bash
-http post http://localhost/api/contacts name="Choiru"
+http post http://localhost/api/contacts
         
-choiruzain@MacMarichoy-7 TestSystem % http post http://localhost/api/contacts name="Choiru"
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 102
+Connection: close
+Content-Length: 119
 Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:01:53 GMT
-ETag: W/"66-FmPYAaIkyQoroDwP2JsAZjWTAxs"
+Date: Fri, 04 Oct 2024 04:08:30 GMT
+ETag: W/"77-aafdNDgf06FiHD9zLdYYWPjH9uI"
 Server: nginx/1.25.1
-Vary: Origin
 X-Powered-By: Express
 
 {
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
+   "id": 1,
+   "name": "Elliot",
+   "createdAt": "2024-10-04T04:08:13.804Z",
+   "updatedAt": "2024-10-04T04:08:13.804Z"
 }
 
 ```
@@ -95,44 +89,174 @@ X-Powered-By: Express
 ```bash
 http get http://localhost/api/contacts
 
-
-choiruzain@MacMarichoy-7 TestSystem % http get http://localhost/api/contacts
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 104
+Connection: close
+Content-Length: 235
 Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:04:58 GMT
-ETag: W/"68-V+4KuL2xahYt8YAkKG6rKdR7wHg"
+Date: Fri, 04 Oct 2024 04:20:29 GMT
+ETag: W/"eb-6OEA1yqHJc7MVfyYBrzIh7pa5Kk"
 Server: nginx/1.25.1
-Vary: Origin
 X-Powered-By: Express
 
-[
 {
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
-}
-]
+    "id": 1,
+    "name": "Elliot",
+    "address": null,
+    "createdAt": "2024-10-04T04:08:13.804Z",
+    "updatedAt": "2024-10-04T04:08:13.804Z"
+  },
+  {
+    "id": 2,
+    "name": "John",
+    "address": null,
+    "createdAt": "2024-10-04T04:20:07.891Z",
+    "updatedAt": "2024-10-04T04:20:07.891Z"
+  }
 
 
 ```
-3. Show/create the API commmand to delete the contacts (DELETE)
+3. delete contacts API (DELETE)
 
 ```bash
 
+http delete http://localhost/api/contacts/
+        
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 47
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:28:11 GMT
+ETag: W/"2f-i0D5Qo4IGfH+OpTTITmyTnSzFvU"
+Server: nginx/1.25.1
+X-Powered-By: Express
 
-
+{
+  "message": "Contact was deleted successfully!"
+}
 
 
 ```
 
-4. Show/create the API command to edit the contacts (PUT)
-```
-http get http://localhost/api/contacts/1/phones
+4. Edit contacts API (PUT)
+
+```bash 
+
+http put http://localhost/api/contacts/
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 33
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:28:11 GMT
+ETag: W/"21-Alc536hfGIM8IOU9Ws/tt5VJi28"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+
+{
+  "message": "Cannot update Contact"
+}
 
 ```
 
 ### Phone API
+
+1. Add phone API  (POST)
+
+```bash
+http post http://localhost/api/contacts/1/phones
+        
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 149
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:53:59 GMT
+ETag: W/"95-tO8NL26kF7ArGevUCVl52Tz7ZrY"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+   "id": 4,
+   "phone_type": "mobile",
+   "phone_number": 234234234,
+   "contactId": 1,
+   "createdAt": "2024-10-04T04:50:05.985Z",
+   "updatedAt": "2024-10-04T04:50:05.985Z"
+}
+
+
+```
+2 Get phones API  (GET)
+
+```bash
+http get http://localhost/api/contacts/1/phones
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 161
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:45:45 GMT
+ETag: W/"a1-yn0lgKQCzpii+7dho5kE7MA6gBA"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+   "id": 4,
+   "phone_type": "mobile",
+   "phone_number": 432748234,
+   "contactId": 1,
+   "createdAt": "2024-10-04T04:14:41.564Z",
+   "updatedAt": "2024-10-04T04:14:41.564Z"
+}
+
+
+```
+3. Delete phones API (DELETE)
+
+```bash
+
+http delete http://localhost/api/contacts/2/phones/5/
+        
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 45
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:57:34 GMT
+ETag: W/"2d-FdOer7L1Hk5YcQlrlpn01BrNJmA"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "message": "Phone was deleted successfully!"
+}
+
+
+```
+
+4. Edit phones API (PUT)
+
+```bash 
+
+http put http://localhost/api/contacts/1/phones/4/
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 33
+Content-Type: application/json; charset=utf-8
+Date: Fri, 04 Oct 2024 04:59:14 GMT
+ETag: W/"21-Alc536hfGIM8IOU9Ws/tt5VJi28"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "message": "Cannot update Phone"
+}
+
+```

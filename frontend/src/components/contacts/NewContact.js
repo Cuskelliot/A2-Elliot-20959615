@@ -31,10 +31,10 @@ function NewContact(props) {
         <form className='new-contact' onSubmit={createContact}>
             <select onChange={(e) => setName(e.target.value)} value={name}>
                 <option value="" disabled selected>Select name</option>
-                <option value="James">James</option>
-                <option value="Will">Will</option>
+                <option value="Elliot">Elliot</option>
+                <option value="John">John</option>
                 <option value="Emily">Emily</option>
-                <option value="Danni">Danni</option>
+                <option value="Sarah">Sarah</option>
             </select>
             <button className='button green' type='submit'>Create Contact</button>
         </form>
