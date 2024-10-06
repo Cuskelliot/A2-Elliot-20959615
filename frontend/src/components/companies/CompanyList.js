@@ -20,7 +20,7 @@ function CompanyList(props) {
                     {
                         company.map((co) => {
                             return (
-                                <Company key={co.id} company={co} companies={companies} setCompany={setCompany} contact={contact} />
+                                <Company key={co.id} co={co} company={company} setCompany={setCompany} contact={contact} />
                             );
                         })
                     }

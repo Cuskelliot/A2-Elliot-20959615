@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import PhoneList from '../phones/PhoneList.js';
+import CompanyList from '../companies/CompanyList.js';
 
 function Contact(props) {
     const { contact, contacts, setContacts } = props;
     const [expanded, setExpanded] = useState(false);
     const [phones, setPhones] = useState([]);
+    const [company, setCompany] = useState([]);
 
     useEffect(() => {
         const fetchPhones = async () => {
@@ -21,6 +23,23 @@ function Contact(props) {
         };
 
         fetchPhones();
+    }, [contact.id]);
+
+    useEffect(() => {
+        const fetchCompany = async () => {
+            try {
+                const response = await fetch(`http://localhost/api/contacts/${contact.id}/company`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setCompany(Array.isArray(data) ? data : [data]);
+            } catch (error) {
+                console.error('Error fetching company:', error);
+            }
+        };
+
+        fetchCompany();
     }, [contact.id]);
 
     const expandStyle = {
@@ -59,6 +78,7 @@ function Contact(props) {
                 <p>Name: {contact.name}</p>
                 <p>Address: {contact.address}</p>
                 <PhoneList phones={phones} setPhones={setPhones} contact={contact} />
+                <CompanyList company={company} setCompany={setCompany} contact={contact} />
             </div>
         </div>
     );
