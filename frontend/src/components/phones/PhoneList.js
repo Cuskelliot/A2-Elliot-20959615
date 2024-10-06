@@ -18,11 +18,11 @@ function PhoneList(props) {
                 </thead>
                 <tbody>
                     {
-                        phones.map((phone) => {
-                            return (
-                                <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones} contact={contact} />
-                            );
-                        })
+                    phones.map((phone) => {
+                        return (
+                            <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones} contact={contact} /> 
+                        );
+                    })
                     }
                 </tbody>
             </table>
