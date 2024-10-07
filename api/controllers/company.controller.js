@@ -101,7 +101,7 @@ exports.delete = (req, res) => {
     })
     .catch(err => {
         res.status(500).send({
-            message: "Could not delete Phone with id=" + id
+            message: "Could not delete company with id=" + id
         });
     });
 };

@@ -1,7 +1,7 @@
 const db = require("../models");
 const Contacts = db.contacts;
 const Phones = db.phones;
-// const Company = db.company;
+const Company = db.company;
 
 // Create contact
 exports.create = (req, res) => {
@@ -75,7 +75,6 @@ exports.update = (req, res) => {
     });
 };
 
-// TODO modify for company?
 
 // Delete one contact by id
 exports.delete = (req, res) => {
@@ -83,6 +82,9 @@ exports.delete = (req, res) => {
 
     Phones.destroy({
         where: { contactId: id }
+    })
+    Company.destroy({
+        where: { contactId: id }    /////////////
     })
     .then(num => {
         Contacts.destroy({
