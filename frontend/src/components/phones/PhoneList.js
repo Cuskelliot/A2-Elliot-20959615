@@ -18,31 +18,34 @@ function PhoneList(props) {
         fetchPhones();
     }, [contact.id]);
 
-      return (
-        <div className='phone-list'>
-            <NewPhone phones={phones} setPhones={setPhones} contact={contact} />
-
-            <table onClick={(e) => e.stopPropagation()}>
-                <thead>
-                    <tr>
-                        <th>Phone Type</th>
-                        <th>Phone Number</th>
-                        <th>Update or Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        phones.map((phone) => {
-                            return (
-                                <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones}
-                                 contact={contact} refreshPhones={fetchPhones}/>
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
-        </div>
-      );
+    return (
+    <div className='phone-list'>
+        <NewPhone phones={phones} setPhones={setPhones} contact={contact} />
+        
+        <table onClick={(e) => e.stopPropagation()}>
+            <thead>
+                <tr>
+                    <th>Phone Type</th>
+                    <th>Phone Number</th>
+                    <th>Update or Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {phones.map((phone) => {
+                    return (
+                        <Phone 
+                        key={phone.id} 
+                        phone={phone} 
+                        phones={phones} 
+                        setPhones={setPhones}
+                        contact={contact} 
+                        refreshPhones={fetchPhones}/>
+                    );
+                })}
+            </tbody>
+        </table>
+    </div>
+    );
 }
 
 export default PhoneList;

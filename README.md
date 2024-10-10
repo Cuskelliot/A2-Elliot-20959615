@@ -84,7 +84,7 @@ X-Powered-By: Express
 }
 
 ```
-2 Get contacts API  (GET)
+2. Get contacts API  (GET)
 
 ```bash
 http get http://localhost/api/contacts
@@ -190,7 +190,7 @@ X-Powered-By: Express
 
 
 ```
-2 Get phones API  (GET)
+2. Get phones API  (GET)
 
 ```bash
 http get http://localhost/api/contacts/1/phones
@@ -257,6 +257,105 @@ X-Powered-By: Express
 
 {
   "message": "Cannot update Phone"
+}
+
+```
+
+### Company API
+
+1. Add company API  (POST)
+
+```bash
+http post http://localhost/api/contacts/1/company
+        
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 151
+Content-Type: application/json; charset=utf-8
+Date: Thu, 10 Oct 2024 09:24:00 GMT
+ETag: W/"97-WcuWehUDhCnEzEaTsCXkswQ9yq4"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "company_id": 2,
+  "company_name": "sdfsdf",
+  "contactId": 1,
+  "updatedAt": "2024-10-10T09:24:00.374Z",
+  "createdAt": "2024-10-10T09:24:00.374Z",
+  "company_address": "333"
+}
+
+
+```
+2. Get company API  (GET)
+
+```bash
+http get http://localhost/api/contacts/1/company
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 160
+Content-Type: application/json; charset=utf-8
+Date: Thu, 10 Oct 2024 09:19:22 GMT
+ETag: W/"a0-GkNpIjVsWSwZLAQacfzQVuWlduw"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "company_id": 1,
+  "company_name": "company 1",
+  "company_address": "123 fake st",
+  "contactId": 1,
+  "createdAt": "2024-10-10T09:18:23.862Z",
+  "updatedAt": "2024-10-10T09:18:23.862Z"
+}
+
+
+```
+3. Delete company API (DELETE)
+
+```bash
+
+http delete http://localhost/api/contacts/1/company/1/
+        
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 47
+Content-Type: application/json; charset=utf-8
+Date: Thu, 10 Oct 2024 09:37:08 GMT
+ETag: W/"2f-goeWLYgQgcZh1o2QS0V4ovFdEa0"
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "message": "Company was deleted successfully!"
+}
+
+
+```
+
+4. Edit company API (PUT)
+
+```bash 
+
+http put http://localhost/api/contacts/1/company/3
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Connection: close
+Content-Length: 
+Content-Type: application/json; charset=utf-8
+Date: 
+ETag: 
+Server: nginx/1.25.1
+X-Powered-By: Express
+
+{
+  "message": "Cannot update Company"
 }
 
 ```

@@ -1,25 +1,17 @@
-services:
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    links:
-      - frontend
-    depends_on:
-      - frontend
+version: "3.8"
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ./frontend:/app
-    links:
-      - api
-    depends_on:
-      - api
+services:
+  db:
+    image: postgres:15.3-alpine3.18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   api:
     build:
@@ -27,10 +19,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./api:/app
-    links:
-      - db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: on-failure
     deploy:
       restart_policy:
@@ -39,10 +30,20 @@ services:
         max_attempts: 0
         window: 120s
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - api
 
-  db:
-    image: postgres:15.3-alpine3.18
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - frontend

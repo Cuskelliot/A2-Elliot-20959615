@@ -1,9 +1,9 @@
 function Company(props) {
-    const {contact, company, companies, setCompany} = props;
+    const {company, companies, setCompany} = props;
 
     async function deleteCompany() {
         try {
-            const response = await fetch(`http://localhost/api/contacts/${contact.id}/company/${company.id}`, {
+            const response = await fetch(`http://localhost/api/contacts/${company.contactId}/company/${company.company_id}`, {
                 method: 'DELETE',
             });
     
@@ -12,7 +12,7 @@ function Company(props) {
             }
     
             let newCompany = companies.filter((c) => {
-                return c.id !== company.id;
+                return c.company_id !== company.company_id;
             });
     
             setCompany(newCompany);

@@ -18,32 +18,25 @@ function CompanyList(props) {
         fetchCompany();
     }, [contact.id]);
 
-
-      return (
-        <div className='company-list'>
-            <NewCompany company={company} setCompany={setCompany} contact={contact} />
-
-            <table onClick={(e) => e.stopPropagation()}>
-                <thead>
-                    <tr>
-                        <th>Company Name</th>
-                        <th>Company Address</th>
-                        <th>Update or Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        company.map((co) => {
-                            return (
-                                <Company key={co.company_id} co={co} company={company} 
-                                setCompany={setCompany} contact={contact} refreshCompany={fetchCompany} />
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
-        </div>
-      );
+    return (
+    <div className='company-list'>
+        <NewCompany company={company} setCompany={setCompany} contact={contact} />
+        
+        <table onClick={(e) => e.stopPropagation()}>
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Company Address</th>
+                </tr>
+            </thead>
+            <tbody>
+            {company.map((co, index) => {
+                return <Company key={index} company={co} companies={company} setCompany={setCompany} contact={contact} />;
+            })}
+            </tbody>
+        </table>
+    </div>
+    );
 }
 
 export default CompanyList;

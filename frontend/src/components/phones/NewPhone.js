@@ -8,32 +8,40 @@ function NewPhone(props) {
     async function createPhone(e) {
         e.preventDefault();
 
-        const response = await fetch('http://localhost/api/contacts/' + contact.id + '/phones', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                number,
-                name
-            })
-        });
+        try {
+            const response = await fetch(`http://localhost/api/contacts/${contact.id}/phones`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    number,
+                    name
+                })
+            });
 
-        const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-        if (data.id) {
-            setPhones([...phones, data]);
+            const data = await response.json();
+
+            if (data.id) {
+                setPhones([...phones, data]);
+            }
+
+            setNumber('');
+            setName('');
+        } catch (error) {
+            console.error('Error creating phone:', error);
         }
-
-        setNumber('');
-        setName('');
     }
 
 	return (
         <form onSubmit={createPhone} onClick={(e) => e.stopPropagation()} className='new-phone'>
-            <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} value={name}/>
+            <input type='text' placeholder='Phone Name' onChange={(e) => setName(e.target.value)} value={name}/>
             <input type='text' placeholder='Phone Number' onChange={(e) => setNumber(e.target.value)} value={number}/>
-            <button className='button green' type='submit'>Add New Phone Number</button>
+            <button className='button green' type='submit'>Add {contact.name}'s Phone</button>
         </form>
 	);
 }
