@@ -165,7 +165,6 @@
 //                 <p>Address: {contact.address}</p>
 //                 <PhoneList phones={phones} setPhones={setPhones} contact={contact} />
 //                 <hr />
-//                 <hr />
 //                 <CompanyList company={company} setCompany={setCompany} contact={contact} />
 //             </div>
 //         </div>
@@ -186,14 +185,14 @@ function Contact(props) {
     const [company, setCompany] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost/api/contacts/' + contact.id + '/phones')
+        fetch(`http://localhost/api/contacts/${contact.id}/phones`)
             .then(response => response.json())
             .then(data => setPhones(data))
             .catch((error) => {
                 console.error('Error:', error);
             });
 
-        fetch('http://localhost/api/contacts/' + contact.id + '/company')
+        fetch(`http://localhost/api/contacts/${contact.id}/company`)
             .then(response => response.json())
             .then(data => setCompany(data))
             .catch((error) => {
@@ -208,7 +207,7 @@ function Contact(props) {
     async function doDelete(e) {
         e.stopPropagation();
         
-        const response = await fetch('http://localhost/api/contacts/' + contact.id, {
+        const response = await fetch(`http://localhost/api/contacts/${contact.id}`, {
             method: 'DELETE',
         });
 

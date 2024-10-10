@@ -27,14 +27,15 @@ function PhoneList(props) {
                     <tr>
                         <th>Phone Type</th>
                         <th>Phone Number</th>
-                        <th>Modification Update or Delete</th>
+                        <th>Update or Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         phones.map((phone) => {
                             return (
-                                <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones} contact={contact} refreshPhones={fetchPhones}/>
+                                <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones}
+                                 contact={contact} refreshPhones={fetchPhones}/>
                             );
                         })
                     }

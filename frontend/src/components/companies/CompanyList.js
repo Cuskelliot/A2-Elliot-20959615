@@ -18,6 +18,7 @@ function CompanyList(props) {
         fetchCompany();
     }, [contact.id]);
 
+
       return (
         <div className='company-list'>
             <NewCompany company={company} setCompany={setCompany} contact={contact} />
@@ -27,7 +28,7 @@ function CompanyList(props) {
                     <tr>
                         <th>Company Name</th>
                         <th>Company Address</th>
-                        <th>Modification Update or Delete</th>
+                        <th>Update or Delete</th>
                     </tr>
                 </thead>
                 <tbody>
