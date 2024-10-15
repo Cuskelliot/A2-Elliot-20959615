@@ -31,10 +31,7 @@ function Company(props) {
 
 	async function deleteCompany() {
 		const response = await fetch(
-			"http://localhost/api/contacts/" +
-				contact.id +
-				"/company/" +
-				company.company_id,
+			`http://localhost/api/contacts/${contact.id}/company/${company.company_id}`,
 			{
 				method: "DELETE",
 			},

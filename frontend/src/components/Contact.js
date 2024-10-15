@@ -9,7 +9,7 @@ function Contact(props) {
 	const [companies, setCompanies] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost/api/contacts/" + contact.id + "/phones")
+		fetch(`http://localhost/api/contacts/${contact.id}/phones`)
 			.then((response) => response.json())
 			.then((data) => setPhones(data))
 			.catch((error) => {
@@ -19,7 +19,7 @@ function Contact(props) {
 
 	// company use effect
 	useEffect(() => {
-		fetch("http://localhost/api/contacts/" + contact.id + "/company")
+		fetch(`http://localhost/api/contacts/${contact.id}/company`)
 			.then((response) => response.json())
 			.then((data) => setCompanies(data))
 			.catch((error) => {
@@ -35,7 +35,7 @@ function Contact(props) {
 		e.stopPropagation();
 
 		const response = await fetch(
-			"http://localhost/api/contacts/" + contact.id,
+			`http://localhost/api/contacts/${contact.id}`,
 			{
 				method: "DELETE",
 			},

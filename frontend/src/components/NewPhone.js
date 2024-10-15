@@ -9,7 +9,7 @@ function NewPhone(props) {
 		e.preventDefault();
 
 		const response = await fetch(
-			"http://localhost/api/contacts/" + contact.id + "/phones",
+			`http://localhost/api/contacts/${contact.id}/phones`,
 			{
 				method: "POST",
 				headers: {

@@ -8,7 +8,7 @@ function NewContact(props) {
     async function createContact(e) {
         e.preventDefault();
 
-        const response = await fetch('http://localhost/api/contacts', {
+        const response = await fetch(`http://localhost/api/contacts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

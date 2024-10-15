@@ -9,7 +9,7 @@ function NewCompany(props) {
 		e.preventDefault();
 
 		const response = await fetch(
-			"http://localhost/api/contacts/" + contact.id + "/company",
+			`http://localhost/api/contacts/${contact.id}/company`,
 			{
 				method: "POST",
 				headers: {

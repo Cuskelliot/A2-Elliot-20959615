@@ -3,7 +3,7 @@ function Phone(props) {
 
 	async function deletePhone() {
 		const response = await fetch(
-			"http://localhost/api/contacts/" + contact.id + "/phones/" + phone.id,
+			`http://localhost/api/contacts/${contact.id}/phones/${phone.id}`,
 			{
 				method: "DELETE",
 			},
