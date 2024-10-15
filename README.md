@@ -399,7 +399,7 @@ X-Powered-By: Express
 
 1. Modify contacts table
 
-```
+```bash
 module.exports = (sequelize, Sequelize) => {
 	const Contact = sequelize.define("contact", {
 		id: {
