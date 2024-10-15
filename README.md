@@ -452,7 +452,7 @@ module.exports = (sequelize, Sequelize) => {
 
 - Created Company.js, CompanyList.js, NewCompany.js components in a "company" folder
 - In App.css: 
-  ```
+  ```bash
   .contact {
 	  align-items: center; <-deleted->
   }
@@ -487,8 +487,8 @@ module.exports = (sequelize, Sequelize) => {
   .contact button {
 	  width: 100px;
   }
-```
-```
+
+- sfsdfs
 
 ## Task 4
 
