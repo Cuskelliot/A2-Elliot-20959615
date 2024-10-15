@@ -66,17 +66,13 @@ Replace `container_ID` with the actual ID of the container you want to execute.
   Delete Contact
 </button>
 ```
-
 2. Change the button label in phone component from "Add" to e.g "Add Choiru’s Phone"
-
 ```bash
 <button className="button green" type="submit">
   Add {contact.name}'s Phone
 </button>
 ```
-
 3. Change the placeholder text "Name" with input type text into a drop-down menu with 4 categories
-
 ```bash
 <select onChange={(e) => setName(e.target.value)} value={name}>
   <option value="" disabled selected>
@@ -88,9 +84,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
   <option value="Other">Other</option>
 </select>
 ```
-
 4. In the <tr> element of the table, change the label "Name" to "Phone Type"
-
 ```bash
 <thead>
   <tr>
@@ -127,9 +121,6 @@ ETag: W/"7e-5tq0JEMHkhNpYDcVKRmJwQxAZJ0"
   "updatedAt": "2024-10-15T11:55:30.884Z",
   "createdAt": "2024-10-15T11:55:30.884Z"
 }
-
-
-
 ```
 2. Get contacts API  (GET)
 
@@ -161,13 +152,10 @@ ETag: W/"f9-MtTxO2gEADTJlJxy6SuCt51v5s4"
   "createdAt": "2024-10-15T11:58:47.376Z",
   "updatedAt": "2024-10-15T11:58:47.376Z"
 }
-
-
 ```
 3. delete contacts API (DELETE)
 
 ```bash
-
 http delete http://localhost/api/contacts/
         
 HTTP/1.1 200 OK
@@ -184,9 +172,7 @@ ETag: W/"2f-i0D5Qo4IGfH+OpTTITmyTnSzFvU"
 {
   "message": "Contact was deleted successfully!"
 }
-
 ```
-
 4. Edit contacts API (PUT)
 
 ```bash 
@@ -206,7 +192,6 @@ X-Powered-By: Express
 {
   "message": "Cannot update Contact"
 }
-
 ```
 
 ### Phone API
@@ -235,8 +220,6 @@ ETag: W/"8b-PEFu+IKFLOEnTVUsarOgfFUHYuo"
   "updatedAt": "2024-10-15T12:01:49.467Z",
   "createdAt": "2024-10-15T12:01:49.467Z"
 }
-
-
 ```
 2. Get phones API  (GET)
 
@@ -255,21 +238,21 @@ Vary: Origin
 ETag: W/"119-5DUJFISAnqLSrnJ60lIKpxm2IYM"
 
 {
-        "id": 1,
-        "phone_type": "Work",
-        "phone_number": 123,
-        "contactId": 3,
-        "createdAt": "2024-10-15T12:01:49.467Z",
-        "updatedAt": "2024-10-15T12:01:49.467Z"
-    },
-    {
-        "id": 2,
-        "phone_type": "Home",
-        "phone_number": 321,
-        "contactId": 3,
-        "createdAt": "2024-10-15T12:03:47.440Z",
-        "updatedAt": "2024-10-15T12:03:47.440Z"
-    }
+	"id": 1,
+	"phone_type": "Work",
+	"phone_number": 123,
+	"contactId": 3,
+	"createdAt": "2024-10-15T12:01:49.467Z",
+	"updatedAt": "2024-10-15T12:01:49.467Z"
+},
+{
+	"id": 2,
+	"phone_type": "Home",
+	"phone_number": 321,
+	"contactId": 3,
+	"createdAt": "2024-10-15T12:03:47.440Z",
+	"updatedAt": "2024-10-15T12:03:47.440Z"
+}
 ```
 3. Delete phones API (DELETE)
 
@@ -291,7 +274,6 @@ ETag: W/"2d-FdOer7L1Hk5YcQlrlpn01BrNJmA"
   "message": "Phone was deleted successfully!"
 }
 ```
-
 4. Edit phones API (PUT)
 
 ```bash 
@@ -310,7 +292,6 @@ X-Powered-By: Express
 {
   "message": "Cannot update Phone"
 }
-
 ```
 
 ### Company API
@@ -339,8 +320,6 @@ ETag: W/"a6-VMNHRb5Mu931+0vw3FqIjDfgbMo"
   "updatedAt": "2024-10-15T12:05:40.615Z",
   "createdAt": "2024-10-15T12:05:40.615Z"
 }
-
-
 ```
 2. Get company API  (GET)
 
@@ -359,28 +338,25 @@ Vary: Origin
 ETag: W/"151-anmltW16EWlJPPFtMcu/4mz2p4s"
 
 {
-        "company_id": 1,
-        "company_name": "company 1",
-        "company_address": "c address",
-        "contact_id": 3,
-        "createdAt": "2024-10-15T12:05:40.615Z",
-        "updatedAt": "2024-10-15T12:05:40.615Z"
-    },
-    {
-        "company_id": 2,
-        "company_name": "company 2",
-        "company_address": "c address 2",
-        "contact_id": 3,
-        "createdAt": "2024-10-15T12:06:29.222Z",
-        "updatedAt": "2024-10-15T12:06:29.222Z"
-    }
-
-
+	"company_id": 1,
+	"company_name": "company 1",
+	"company_address": "c address",
+	"contact_id": 3,
+	"createdAt": "2024-10-15T12:05:40.615Z",
+	"updatedAt": "2024-10-15T12:05:40.615Z"
+},
+{
+	"company_id": 2,
+	"company_name": "company 2",
+	"company_address": "c address 2",
+	"contact_id": 3,
+	"createdAt": "2024-10-15T12:06:29.222Z",
+	"updatedAt": "2024-10-15T12:06:29.222Z"
+}
 ```
 3. Delete company API (DELETE)
 
 ```bash
-
 http delete http://localhost/api/contacts/3/company/2
         
 HTTP/1.1 200 OK
@@ -397,14 +373,11 @@ ETag: W/"2f-goeWLYgQgcZh1o2QS0V4ovFdEa0"
 {
   "message": "Company was deleted successfully!"
 }
-
-
 ```
 
 4. Edit company API (PUT)
 
 ```bash 
-
 http put http://localhost/api/contacts/3/company/1
 
 HTTP/1.1 200 OK
@@ -421,7 +394,6 @@ ETag: W/"2f-tSOkyn1aLnHg00JkjP0hv/QxH7Q"
 {
   "message": "Company was updated successfully"
 }
-
 ```
 
 ## Task 3
@@ -710,7 +682,7 @@ useEffect(() => {
 }, []);
 ```
 - Changed return CSS/HTML
-```
+```bash
 return (
 		<div
 			key={contact.id}
