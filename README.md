@@ -487,10 +487,8 @@ module.exports = (sequelize, Sequelize) => {
   .contact button {
 	  width: 100px;
   }
-
-  
-
-
+```
+```
 
 ## Task 4
 
