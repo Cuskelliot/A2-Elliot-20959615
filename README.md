@@ -57,10 +57,53 @@ postgres=# select * from contacts;
    ```
 Replace `container_ID` with the actual ID of the container you want to execute.
 
+## Task 1
+
+1. Change the button label from contact component from "Delete" to "Delete Contact"
+
+```
+<button className="button red" onClick={doDelete}>
+  Delete Contact
+</button>
+```
+
+2. Change the button label in phone component from "Add" to e.g "Add Choiru’s Phone"
+
+```
+<button className="button green" type="submit">
+  Add {contact.name}'s Phone
+</button>
+```
+
+3. Change the placeholder text "Name" with input type text into a drop-down menu with 4 categories
+
+```
+<select onChange={(e) => setName(e.target.value)} value={name}>
+  <option value="" disabled selected>
+    Select Type
+  </option>
+  <option value="Work">Work</option>
+  <option value="Home">Home</option>
+  <option value="Mobile">Mobile</option>
+  <option value="Other">Other</option>
+</select>
+```
+
+4. In the <tr> element of the table, change the label "Name" to "Phone Type"
+
+```
+<thead>
+  <tr>
+    <th>Phone type</th>
+    <th>Number</th>
+    <th></th>
+  </tr>
+</thead>
+```
+
 ## Executing API
 
 ### Contact API
-
 
 1. Add contacts API  (POST)
 ```bash
@@ -136,13 +179,11 @@ X-Powered-By: Express
   "message": "Contact was deleted successfully!"
 }
 
-
 ```
 
 4. Edit contacts API (PUT)
 
 ```bash 
-
 http put http://localhost/api/contacts/
 
 HTTP/1.1 200 OK
@@ -213,13 +254,10 @@ X-Powered-By: Express
    "createdAt": "2024-10-04T04:14:41.564Z",
    "updatedAt": "2024-10-04T04:14:41.564Z"
 }
-
-
 ```
 3. Delete phones API (DELETE)
 
 ```bash
-
 http delete http://localhost/api/contacts/2/phones/5/
         
 HTTP/1.1 200 OK
@@ -235,14 +273,11 @@ X-Powered-By: Express
 {
   "message": "Phone was deleted successfully!"
 }
-
-
 ```
 
 4. Edit phones API (PUT)
 
 ```bash 
-
 http put http://localhost/api/contacts/1/phones/4/
 
 HTTP/1.1 200 OK
@@ -359,3 +394,285 @@ X-Powered-By: Express
 }
 
 ```
+
+## Task 3
+
+1. Modify contacts table
+
+```
+module.exports = (sequelize, Sequelize) => {
+	const Contact = sequelize.define("contact", {
+		id: {
+			type: Sequelize.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		name: {
+			type: Sequelize.STRING,
+		},
+		address: {
+			type: Sequelize.STRING, 
+		},
+	});
+
+	return Contact;
+};
+```
+
+2. Modify phones table
+
+```
+module.exports = (sequelize, Sequelize) => {
+	const Phone = sequelize.define("phone", {
+		id: {
+			type: Sequelize.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		phone_type: {
+			type: Sequelize.STRING,
+		},
+		phone_number: {
+			type: Sequelize.INTEGER,
+		},
+		contactId: {
+			type: Sequelize.INTEGER,
+			references: {
+				model: "contacts",
+				key: "id",
+			},
+		},
+	});
+
+	return Phone;
+};
+```
+
+3. Adjust front end
+
+- Created Company.js, CompanyList.js, NewCompany.js components in a "company" folder
+- In App.css: 
+  ```
+  .contact {
+	  align-items: center; <-deleted->
+  }
+  .contact > .title {
+	  align-items: center; <-deleted->
+  }
+  .contact > .title > h2 { <-changed->
+    margin: 0px; <-deleted->
+  }
+
+  <-added->
+
+  .title-element {
+	  display: flex;
+	  flex-direction: row;
+  }
+  .italic {
+	  font-style: italic;
+	  font-size: small;
+	  margin-bottom: 10px;
+  }
+  .title-element {
+	  display: flex;
+	  align-items: center;
+  }
+  .title-element p {
+	  margin: 0;
+  }
+  .title-element h3 {
+	  margin-right: 10px;
+  }
+  .contact button {
+	  width: 100px;
+  }
+
+  
+
+
+
+## Task 4
+
+1. Create a new table named 'companies':
+
+```
+module.exports = (sequelize, Sequelize) => {
+	const Company = sequelize.define("company", {
+		company_id: {
+			type: Sequelize.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		company_name: {
+			type: Sequelize.STRING,
+		},
+		company_address: {
+			type: Sequelize.STRING,
+		},
+		contact_id: {
+			type: Sequelize.INTEGER,
+			references: {
+				model: "contacts",
+				key: "id",
+			},
+		},
+	});
+
+	return Company;
+};
+```
+
+2. Develop four APIs to manage records in the companies table
+
+```
+// Create company
+exports.create = (req, res) => {
+	const company = {
+		company_name: req.body.company_name,
+		company_address: req.body.company_address,
+		contact_id: parseInt(req.params.contactId),
+	};
+
+	console.log("company", company);
+
+	Company.create(company)
+		.then((data) => {
+			res.status(200).send(data);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message || "An error occurred",
+			});
+		});
+};
+
+// Get all companies
+exports.findAll = (req, res) => {
+	Company.findAll({
+		where: {
+			contact_id: parseInt(req.params.contactId),
+		},
+	})
+		.then((data) => {
+			res.status(200).send(data);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message || "Some error occurred",
+			});
+		});
+};
+
+// Get one company by id
+exports.findOne = (req, res) => {
+	Company.findOne({
+		where: {
+			contactId: req.params.contactId,
+			id: req.params.company_id,
+		},
+	})
+		.then((data) => {
+			res.status(200).send(data);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message || "Some error occurred",
+			});
+		});
+};
+
+// Delete one company by id
+exports.delete = (req, res) => {
+	Company.destroy({
+		where: {
+			company_id: req.params.company_id,
+			contact_id: req.params.contactId,
+		},
+	})
+		.then((num) => {
+			if (num == 1) {
+				res.status(200).send({
+					message: "Company was deleted successfully!",
+				});
+			} else {
+				res.status(400).send({
+					message: "Cannot delete company. Record may not exist",
+				});
+			}
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: "Could not delete company with id=" + id,
+			});
+		});
+};
+```
+
+## Task 5
+
+1. Create a front-end interface to manage the newly created companies table, including functionality for adding, editing, deleting, and updating records.
+
+### Edit company using API
+
+```
+// Update one company by id
+exports.update = (req, res) => {
+	const id = req.params.company_id;
+	const contactId = req.params.contactId;
+
+	Company.update(req.body, {
+		where: { company_id: id, contact_id: contactId },
+	})
+		.then((num) => {
+			if (num == 1) {
+				res.status(200).send({
+					message: "Company was updated successfully.",
+				});
+			} else {
+				res.status(400).send({
+					message: "Cannot update company with id=${id}. Field may be empty",
+				});
+			}
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: "Error updating company with id=" + id,
+			});
+		});
+};
+```
+
+### Index.js
+```
+/* Create database tables and models */
+db.contacts = require("./contact.model.js")(sequelize, Sequelize);
+db.phones = require("./phone.model.js")(sequelize, Sequelize);
+db.company = require("./company.model.js")(sequelize, Sequelize); ////
+```
+
+### app.js (api folder)
+
+```
+require("./routes/contacts.routes")(app);
+require("./routes/phones.routes")(app);
+require("./routes/stats.routes")(app);
+require("./routes/company.routes")(app); ////
+```
+
+### Company routes
+
+```
+module.exports = app => {
+  const companies = require("../controllers/company.controller.js");
+  var router = require("express").Router();
+  router.post("/contacts/:contactId/company", companies.create);
+  router.get("/contacts/:contactId/company", companies.findAll);
+  router.get("/contacts/:contactId/company/:company_id", companies.findOne);
+  router.put("/contacts/:contactId/company/:company_id", companies.update);
+  router.delete("/contacts/:contactId/company/:company_id", companies.delete);
+  app.use('/api', router);
+}
+```
+
+### 
