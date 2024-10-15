@@ -4,8 +4,6 @@ import NewContact from './NewContact.js';
 function ContactList(props) {
     const {contacts, setContacts} = props;
 
-    
-
 	return (
 		<div className='contact-list'>
             <h2>Contacts</h2>

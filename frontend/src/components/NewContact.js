@@ -3,19 +3,10 @@ import { useState } from 'react';
 function NewContact(props) {
     const {contacts, setContacts} = props;
     const [name, setName] = useState('');
-
-    const contactAddresses = [
-        { name: "Elliot", address: "123 Main St" },
-        { name: "John", address: "456 Elm St" },
-        { name: "Emily", address: "789 Oak St" },
-        { name: "Sarah", address: "101 Pine St" },
-      ];
+    const [address, setAddress] = useState('');
 
     async function createContact(e) {
         e.preventDefault();
-        
-        const selectedContact = contactAddresses.find((contact) => contact.name === name);
-        const address = selectedContact ? selectedContact.address : "";
 
         const response = await fetch('http://localhost/api/contacts', {
             method: 'POST',
@@ -29,26 +20,22 @@ function NewContact(props) {
         });
 
         const data = await response.json();
+
         if (data.id) {
             setContacts([...contacts, data]);
         }
+
         setName('');
+        setAddress('');
     }
 
-
-    return (
+	return (
         <form className='new-contact' onSubmit={createContact}>
-            <select onChange={(e) => setName(e.target.value)} value={name}>
-                <option value="" disabled selected>Select name</option>
-                <option value="Elliot">Elliot</option>
-                <option value="John">John</option>
-                <option value="Emily">Emily</option>
-                <option value="Sarah">Sarah</option>
-            </select>
+            <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} value={name}/>
+            <input type='text' placeholder='Address' onChange={(e) => setAddress(e.target.value)} value={address}/>
             <button className='button green' type='submit'>Create Contact</button>
         </form>
-    );
-
+	);
 }
 
 export default NewContact;

@@ -61,7 +61,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 1. Change the button label from contact component from "Delete" to "Delete Contact"
 
-```
+```bash
 <button className="button red" onClick={doDelete}>
   Delete Contact
 </button>
@@ -69,7 +69,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 2. Change the button label in phone component from "Add" to e.g "Add Choiru’s Phone"
 
-```
+```bash
 <button className="button green" type="submit">
   Add {contact.name}'s Phone
 </button>
@@ -77,7 +77,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 3. Change the placeholder text "Name" with input type text into a drop-down menu with 4 categories
 
-```
+```bash
 <select onChange={(e) => setName(e.target.value)} value={name}>
   <option value="" disabled selected>
     Select Type
@@ -91,7 +91,7 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 
 4. In the <tr> element of the table, change the label "Name" to "Phone Type"
 
-```
+```bash
 <thead>
   <tr>
     <th>Phone type</th>
@@ -110,21 +110,25 @@ Replace `container_ID` with the actual ID of the container you want to execute.
 http post http://localhost/api/contacts
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 119
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:08:30 GMT
-ETag: W/"77-aafdNDgf06FiHD9zLdYYWPjH9uI"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 11:55:30 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 126
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"7e-5tq0JEMHkhNpYDcVKRmJwQxAZJ0"
 
 {
-   "id": 1,
-   "name": "Elliot",
-   "createdAt": "2024-10-04T04:08:13.804Z",
-   "updatedAt": "2024-10-04T04:08:13.804Z"
+  "id": 3,
+  "name": "elliot",
+  "address": "palace lane",
+  "updatedAt": "2024-10-15T11:55:30.884Z",
+  "createdAt": "2024-10-15T11:55:30.884Z"
 }
+
+
 
 ```
 2. Get contacts API  (GET)
@@ -133,29 +137,30 @@ X-Powered-By: Express
 http get http://localhost/api/contacts
 
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 235
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:20:29 GMT
-ETag: W/"eb-6OEA1yqHJc7MVfyYBrzIh7pa5Kk"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 11:59:28 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 249
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"f9-MtTxO2gEADTJlJxy6SuCt51v5s4"
 
 {
-    "id": 1,
-    "name": "Elliot",
-    "address": null,
-    "createdAt": "2024-10-04T04:08:13.804Z",
-    "updatedAt": "2024-10-04T04:08:13.804Z"
-  },
-  {
-    "id": 2,
-    "name": "John",
-    "address": null,
-    "createdAt": "2024-10-04T04:20:07.891Z",
-    "updatedAt": "2024-10-04T04:20:07.891Z"
-  }
+  "id": 3,
+  "name": "elliot",
+  "address": "palace lane",
+  "createdAt": "2024-10-15T11:55:30.884Z",
+  "updatedAt": "2024-10-15T11:55:30.884Z"
+},
+{
+  "id": 4,
+  "name": "john",
+  "address": "address",
+  "createdAt": "2024-10-15T11:58:47.376Z",
+  "updatedAt": "2024-10-15T11:58:47.376Z"
+}
 
 
 ```
@@ -166,14 +171,15 @@ X-Powered-By: Express
 http delete http://localhost/api/contacts/
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 47
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:28:11 GMT
-ETag: W/"2f-i0D5Qo4IGfH+OpTTITmyTnSzFvU"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:00:34 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"2f-i0D5Qo4IGfH+OpTTITmyTnSzFvU"
 
 {
   "message": "Contact was deleted successfully!"
@@ -208,25 +214,26 @@ X-Powered-By: Express
 1. Add phone API  (POST)
 
 ```bash
-http post http://localhost/api/contacts/1/phones
+http post http://localhost/api/contacts/3/phones
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 149
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:53:59 GMT
-ETag: W/"95-tO8NL26kF7ArGevUCVl52Tz7ZrY"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:01:49 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 139
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"8b-PEFu+IKFLOEnTVUsarOgfFUHYuo"
 
 {
-   "id": 4,
-   "phone_type": "mobile",
-   "phone_number": 234234234,
-   "contactId": 1,
-   "createdAt": "2024-10-04T04:50:05.985Z",
-   "updatedAt": "2024-10-04T04:50:05.985Z"
+  "id": 1,
+  "phone_type": "Work",
+  "phone_number": 123,
+  "contactId": 3,
+  "updatedAt": "2024-10-15T12:01:49.467Z",
+  "createdAt": "2024-10-15T12:01:49.467Z"
 }
 
 
@@ -234,41 +241,51 @@ X-Powered-By: Express
 2. Get phones API  (GET)
 
 ```bash
-http get http://localhost/api/contacts/1/phones
+http get http://localhost/api/contacts/3/phones
 
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 161
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:45:45 GMT
-ETag: W/"a1-yn0lgKQCzpii+7dho5kE7MA6gBA"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:04:03 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 281
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"119-5DUJFISAnqLSrnJ60lIKpxm2IYM"
 
 {
-   "id": 4,
-   "phone_type": "mobile",
-   "phone_number": 432748234,
-   "contactId": 1,
-   "createdAt": "2024-10-04T04:14:41.564Z",
-   "updatedAt": "2024-10-04T04:14:41.564Z"
-}
+        "id": 1,
+        "phone_type": "Work",
+        "phone_number": 123,
+        "contactId": 3,
+        "createdAt": "2024-10-15T12:01:49.467Z",
+        "updatedAt": "2024-10-15T12:01:49.467Z"
+    },
+    {
+        "id": 2,
+        "phone_type": "Home",
+        "phone_number": 321,
+        "contactId": 3,
+        "createdAt": "2024-10-15T12:03:47.440Z",
+        "updatedAt": "2024-10-15T12:03:47.440Z"
+    }
 ```
 3. Delete phones API (DELETE)
 
 ```bash
-http delete http://localhost/api/contacts/2/phones/5/
+http delete http://localhost/api/contacts/3/phones/2
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 45
-Content-Type: application/json; charset=utf-8
-Date: Fri, 04 Oct 2024 04:57:34 GMT
-ETag: W/"2d-FdOer7L1Hk5YcQlrlpn01BrNJmA"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:04:49 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 45
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"2d-FdOer7L1Hk5YcQlrlpn01BrNJmA"
 
 {
   "message": "Phone was deleted successfully!"
@@ -301,25 +318,26 @@ X-Powered-By: Express
 1. Add company API  (POST)
 
 ```bash
-http post http://localhost/api/contacts/1/company
+http post http://localhost/api/contacts/3/company
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 151
-Content-Type: application/json; charset=utf-8
-Date: Thu, 10 Oct 2024 09:24:00 GMT
-ETag: W/"97-WcuWehUDhCnEzEaTsCXkswQ9yq4"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:05:40 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 166
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"a6-VMNHRb5Mu931+0vw3FqIjDfgbMo"
 
 {
-  "company_id": 2,
-  "company_name": "sdfsdf",
-  "contactId": 1,
-  "updatedAt": "2024-10-10T09:24:00.374Z",
-  "createdAt": "2024-10-10T09:24:00.374Z",
-  "company_address": "333"
+  "company_id": 1,
+  "company_name": "company 1",
+  "company_address": "c address",
+  "contact_id": 3,
+  "updatedAt": "2024-10-15T12:05:40.615Z",
+  "createdAt": "2024-10-15T12:05:40.615Z"
 }
 
 
@@ -327,26 +345,35 @@ X-Powered-By: Express
 2. Get company API  (GET)
 
 ```bash
-http get http://localhost/api/contacts/1/company
+http get http://localhost/api/contacts/3/company
 
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 160
-Content-Type: application/json; charset=utf-8
-Date: Thu, 10 Oct 2024 09:19:22 GMT
-ETag: W/"a0-GkNpIjVsWSwZLAQacfzQVuWlduw"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:06:45 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 337
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"151-anmltW16EWlJPPFtMcu/4mz2p4s"
 
 {
-  "company_id": 1,
-  "company_name": "company 1",
-  "company_address": "123 fake st",
-  "contactId": 1,
-  "createdAt": "2024-10-10T09:18:23.862Z",
-  "updatedAt": "2024-10-10T09:18:23.862Z"
-}
+        "company_id": 1,
+        "company_name": "company 1",
+        "company_address": "c address",
+        "contact_id": 3,
+        "createdAt": "2024-10-15T12:05:40.615Z",
+        "updatedAt": "2024-10-15T12:05:40.615Z"
+    },
+    {
+        "company_id": 2,
+        "company_name": "company 2",
+        "company_address": "c address 2",
+        "contact_id": 3,
+        "createdAt": "2024-10-15T12:06:29.222Z",
+        "updatedAt": "2024-10-15T12:06:29.222Z"
+    }
 
 
 ```
@@ -354,17 +381,18 @@ X-Powered-By: Express
 
 ```bash
 
-http delete http://localhost/api/contacts/1/company/1/
+http delete http://localhost/api/contacts/3/company/2
         
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 47
-Content-Type: application/json; charset=utf-8
-Date: Thu, 10 Oct 2024 09:37:08 GMT
-ETag: W/"2f-goeWLYgQgcZh1o2QS0V4ovFdEa0"
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:07:24 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"2f-goeWLYgQgcZh1o2QS0V4ovFdEa0"
 
 {
   "message": "Company was deleted successfully!"
@@ -377,20 +405,21 @@ X-Powered-By: Express
 
 ```bash 
 
-http put http://localhost/api/contacts/1/company/3
+http put http://localhost/api/contacts/3/company/1
 
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: close
-Content-Length: 
-Content-Type: application/json; charset=utf-8
-Date: 
-ETag: 
 Server: nginx/1.25.1
+Date: Tue, 15 Oct 2024 12:08:24 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+Connection: keep-alive
 X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:3000
+Vary: Origin
+ETag: W/"2f-tSOkyn1aLnHg00JkjP0hv/QxH7Q"
 
 {
-  "message": "Cannot update Company"
+  "message": "Company was updated successfully"
 }
 
 ```
@@ -421,7 +450,7 @@ module.exports = (sequelize, Sequelize) => {
 
 2. Modify phones table
 
-```
+```bash
 module.exports = (sequelize, Sequelize) => {
 	const Phone = sequelize.define("phone", {
 		id: {
@@ -451,7 +480,8 @@ module.exports = (sequelize, Sequelize) => {
 3. Adjust front end
 
 - Created Company.js, CompanyList.js, NewCompany.js components in a "company" folder
-- In App.css: 
+
+- In App.css (relates to Contact.js)
   ```bash
   .contact {
 	  align-items: center; <-deleted->
@@ -469,11 +499,6 @@ module.exports = (sequelize, Sequelize) => {
 	  display: flex;
 	  flex-direction: row;
   }
-  .italic {
-	  font-style: italic;
-	  font-size: small;
-	  margin-bottom: 10px;
-  }
   .title-element {
 	  display: flex;
 	  align-items: center;
@@ -488,13 +513,11 @@ module.exports = (sequelize, Sequelize) => {
 	  width: 100px;
   }
 
-- sfsdfs
-
 ## Task 4
 
 1. Create a new table named 'companies':
 
-```
+```bash
 module.exports = (sequelize, Sequelize) => {
 	const Company = sequelize.define("company", {
 		company_id: {
@@ -523,7 +546,7 @@ module.exports = (sequelize, Sequelize) => {
 
 2. Develop four APIs to manage records in the companies table
 
-```
+```bash
 // Create company
 exports.create = (req, res) => {
 	const company = {
@@ -613,7 +636,7 @@ exports.delete = (req, res) => {
 
 ### Edit company using API
 
-```
+```bash
 // Update one company by id
 exports.update = (req, res) => {
 	const id = req.params.company_id;
@@ -642,7 +665,7 @@ exports.update = (req, res) => {
 ```
 
 ### Index.js
-```
+```bash
 /* Create database tables and models */
 db.contacts = require("./contact.model.js")(sequelize, Sequelize);
 db.phones = require("./phone.model.js")(sequelize, Sequelize);
@@ -651,7 +674,7 @@ db.company = require("./company.model.js")(sequelize, Sequelize); ////
 
 ### app.js (api folder)
 
-```
+```bash
 require("./routes/contacts.routes")(app);
 require("./routes/phones.routes")(app);
 require("./routes/stats.routes")(app);
@@ -660,7 +683,7 @@ require("./routes/company.routes")(app); ////
 
 ### Company routes
 
-```
+```bash
 module.exports = app => {
   const companies = require("../controllers/company.controller.js");
   var router = require("express").Router();
@@ -673,4 +696,51 @@ module.exports = app => {
 }
 ```
 
-### 
+### Contact.js
+
+- Created useEffect for company
+```bash
+useEffect(() => {
+  fetch("http://localhost/api/contacts/" + contact.id + "/company")
+    .then((response) => response.json())
+    .then((data) => setCompanies(data))
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}, []);
+```
+- Changed return CSS/HTML
+```
+return (
+		<div
+			key={contact.id}
+			className="contact" //added
+			onClick={(e) => setExpanded(!expanded)}
+		>
+			<div className="title">
+				<h2>Contact Summary:</h2>
+				<div className="title-element">
+					<h3>Name:</h3> <p>{contact.name}</p>
+				</div>
+				<div className="title-element">
+					<h3>Address:</h3> <p>{contact.address}</p>
+				</div>
+				<button className="button red" onClick={doDelete}>
+					Delete Contact
+				</button>
+			</div>
+
+			<div style={expandStyle}>
+				<hr />
+				<PhoneList phones={phones} setPhones={setPhones} contact={contact} />
+				
+        // added company list
+        <CompanyList
+					companies={companies}
+					setCompanies={setCompanies}
+					contact={contact}
+				/>
+			</div>
+		</div>
+	);
+```
